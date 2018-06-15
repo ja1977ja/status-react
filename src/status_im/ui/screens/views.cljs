@@ -116,7 +116,9 @@
                :transparent      true
                :on-request-close (fn []
                                    (cond
-                                     (= modal-view :wallet-send-transaction-modal)
+                                     (#{:wallet-send-transaction-modal
+                                        :wallet-transaction-fee}
+                                      modal-view)
                                      (dispatch [:wallet/discard-transaction-navigate-back])
 
                                      :else
