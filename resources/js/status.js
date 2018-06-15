@@ -215,6 +215,15 @@ function chooseContact(titleText, botDbKey, argumentIndex) {
     }];
 }
 
+function chooseAsset(titleText, botDbKey, argumentIndex) {
+        return ['choose-asset', {
+            title: titleText,
+                "bot-db-key": botDbKey,
+                index: argumentIndex
+        }];
+    }
+
+
 function separator() {
     return ['separator'];
 }
@@ -276,6 +285,7 @@ var status = {
         webView: webView,
         validationMessage: validationMessage,
         bridgedWebView: bridgedWebView,
+        chooseAsset: chooseAsset,
         chooseContact: chooseContact,
         subscribe: subscribe,
         dispatch: dispatch,

@@ -91,7 +91,7 @@
                     command)
           {:keys [amount] request-network :network} params
           recipient-name (get-in params [:bot-db :public :recipient])
-          usd-amount (money/usd-amount amount prices)
+          usd-amount (money/usd-amount amount :ETH prices)
           network-mismatch? (and request-network (not= request-network network))
           on-press-handler (cond
                              network-mismatch? nil

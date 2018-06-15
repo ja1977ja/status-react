@@ -26,6 +26,18 @@ function amountParameterBox(params, context) {
     };
 }
 
+var assetSendParam = {
+        name: "asset",
+        type: status.types.TEXT,
+        suggestions: function (params) {
+            return {
+                    title: I18n.t('send_title'),
+                    markup: status.components.chooseAsset("Choose asset", "asset", 0)
+            };
+        }
+};
+
+
 var recipientSendParam = {
     name: "recipient",
     type: status.types.TEXT,
@@ -45,7 +57,7 @@ function amountSendParam() {
     };
 }
 
-var paramsPersonalSend = [amountSendParam()];
+var paramsPersonalSend = [assetSendParam, amountSendParam()];
 var paramsGroupSend = [recipientSendParam, amountSendParam()];
 
 function validateSend(validateRecipient, params, context) {
