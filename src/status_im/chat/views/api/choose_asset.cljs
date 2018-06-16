@@ -3,37 +3,28 @@
   (:require [re-frame.core :as re-frame]
             [status-im.ui.components.list.views :as list]
             [status-im.ui.components.react :as react]
-            [status-im.ui.components.colors :as colors]
-            [status-im.utils.money :as money]))
+            [status-im.utils.money :as money]
+            [status-im.chat.views.api.styles :as styles]))
+
+(defn clean-asset [asset]
+  (select-keys asset [:name :symbol :decimals :address]))
 
 (defn- render-asset [arg-index bot-db-key]
   (fn [{:keys [name symbol amount decimals] :as asset}]
     [react/touchable-highlight {:on-press #(re-frame/dispatch
                                             [:set-asset-as-command-argument {:arg-index  arg-index
                                                                              :bot-db-key bot-db-key
-                                                                             :asset      (dissoc asset :amount)}])}
-     [react/view {:flex-direction   :row
-                  :align-items      :center
-                  :justify-content  :space-between
-                  :padding-vertical 11}
-      [react/view {:flex            1
-                   :flex-direction  :row
-                   :align-items     :center}
+                                                                             :asset      (clean-asset asset)}])}
+     [react/view styles/asset-container
+      [react/view styles/asset-main
        [react/image {:source (-> asset :icon :source)
-                     :style  {:width        30
-                              :height       30
-                              :margin-left  14
-                              :margin-right 12}}]
-       [react/text {:style {:color :black}} symbol]
-       [react/text {:style {:color        :gray
-                            :padding-left 4}} name]]
-      [react/text {:style {:color         :gray
-                           :padding-right 14}}
+                     :style  styles/asset-icon}]
+       [react/text {:style styles/asset-symbol} symbol]
+       [react/text {:style styles/asset-name} name]]
+      [react/text {:style styles/asset-balance}
        (str (money/internal->formatted amount symbol decimals))]]]))
 
-(def assets-separator [react/view {:height           1
-                                   :background-color colors/gray-light
-                                   :margin-left      56}])
+(def assets-separator [react/view styles/asset-separator])
 
 (defview choose-asset-view [{arg-index  :index
                              bot-db-key :bot-db-key}]
