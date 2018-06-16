@@ -1,31 +1,5 @@
 // Send command/response
 
-
-function amountParameterBox(params, context) {
-
-
-    return {
-        title: I18n.t('send_title'),
-        showBack: true,
-        markup: status.components.view({
-            flex: 1
-        }, [
-            status.components.text({
-                    style: {
-                        fontSize: 14,
-                        color: "rgb(147, 155, 161)",
-                        paddingTop: 12,
-                        paddingLeft: 16,
-                        paddingRight: 16,
-                        paddingBottom: 20
-                    }
-                },
-                I18n.t('send_specify_amount')
-            )
-        ])
-    };
-}
-
 var assetSendParam = {
         name: "asset",
         type: status.types.TEXT,
@@ -33,7 +7,8 @@ var assetSendParam = {
             return {
                     markup: status.components.chooseAsset("asset", 0)
             };
-        }
+        },
+        placeholder: I18n.t('currency_placeholder')
 };
 
 
@@ -52,7 +27,7 @@ function amountSendParam() {
     return {
         name: "amount",
         type: status.types.NUMBER,
-        suggestions: amountParameterBox.bind(this)
+        placeholder: I18n.t('amount_placeholder')
     };
 }
 

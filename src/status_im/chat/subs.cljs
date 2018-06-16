@@ -296,7 +296,8 @@
 
          (and command
               (= (count real-args) 1)
-              (input-model/text-ends-with-space? input))
+              ;; TODO(goranjovic) - why do we need this? it will never be true if the string was just trimmed
+              #_(input-model/text-ends-with-space? input))
          (get-in command [:command :params 1 :placeholder]))))))
 
 (reg-sub

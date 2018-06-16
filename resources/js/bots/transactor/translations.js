@@ -6,6 +6,9 @@ I18n.translations = {
         send_specify_amount: 'Specify amount',
         send_sending_to: 'to ',
 
+        currency_placeholder: 'Currency',
+        amount_placeholder: 'Amount',
+
         eth: 'ETH',
 
         request_title: 'Request ETH',
