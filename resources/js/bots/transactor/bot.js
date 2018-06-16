@@ -31,8 +31,7 @@ var assetSendParam = {
         type: status.types.TEXT,
         suggestions: function (params) {
             return {
-                    title: I18n.t('send_title'),
-                    markup: status.components.chooseAsset("Choose asset", "asset", 0)
+                    markup: status.components.chooseAsset("asset", 0)
             };
         }
 };

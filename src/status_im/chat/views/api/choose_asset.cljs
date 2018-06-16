@@ -27,18 +27,10 @@
                                    :background-color colors/gray-light
                                    :margin-left      56}])
 
-(defview choose-asset-view [{title      :title
-                             arg-index  :index
+(defview choose-asset-view [{arg-index  :index
                              bot-db-key :bot-db-key}]
   (letsubs [assets [:wallet/visible-assets]]
     [react/view
-     [react/text {:style {:font-size      14
-                          :color          "rgb(147, 155, 161)"
-                          :padding-top    12
-                          :padding-left   16
-                          :padding-right  16
-                          :padding-bottom 12}}
-      title]
      [list/flat-list {:data                      assets
                       :key-fn                    (comp name :symbol)
                       :render-fn                 (render-asset arg-index bot-db-key)

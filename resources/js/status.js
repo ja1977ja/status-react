@@ -215,9 +215,8 @@ function chooseContact(titleText, botDbKey, argumentIndex) {
     }];
 }
 
-function chooseAsset(titleText, botDbKey, argumentIndex) {
+function chooseAsset(botDbKey, argumentIndex) {
         return ['choose-asset', {
-            title: titleText,
                 "bot-db-key": botDbKey,
                 index: argumentIndex
         }];
