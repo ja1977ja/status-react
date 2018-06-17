@@ -14,7 +14,7 @@
    (handlers-macro/merge-fx cofx
                             {:dispatch [:send-current-message]}
                             (input-events/select-chat-input-command
-                             (assoc (get-in contacts chat-const/request-command-ref) :prefill [amount]) nil true))))
+                             (assoc (get-in contacts chat-const/request-command-ref) :prefill ["ETH" amount]) nil true))))
 
 (handlers/register-handler-fx
  :wallet-send-request

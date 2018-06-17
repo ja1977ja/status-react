@@ -121,6 +121,17 @@ status.response(groupSend);
 
 // Request command
 
+var assetRequestParam = {
+    name: "asset",
+    type: status.types.TEXT,
+    suggestions: function (params) {
+        return {
+            markup: status.components.chooseAsset("asset", 0)
+        };
+    },
+    placeholder: I18n.t('currency_placeholder')
+};
+
 var recipientRequestParam = {
     name: "recipient",
     type: status.types.TEXT,
@@ -134,15 +145,17 @@ var recipientRequestParam = {
 
 var amountRequestParam = {
     name: "amount",
-    type: status.types.NUMBER
+    type: status.types.NUMBER,
+    placeholder: I18n.t('amount_placeholder')
 };
 
-var paramsPersonalRequest = [amountRequestParam];
+var paramsPersonalRequest = [assetRequestParam, amountRequestParam];
 var paramsGroupRequest = [recipientRequestParam, amountRequestParam];
 
 function handlePersonalRequest(params, context) {
     var val = params["amount"].replace(",", ".");
     var network = context["network"];
+    var asset = params["asset"];
 
     return {
         event: "request",
@@ -151,8 +164,9 @@ function handlePersonalRequest(params, context) {
             params: {
                 network: network,
                 amount: val,
+                asset: asset
             },
-            prefill: [val]
+            prefill: [asset, val]
         }
     };
 }
