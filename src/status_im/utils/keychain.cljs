@@ -14,6 +14,7 @@
            (when reject
              (reject))
            (let [encryption-key (.parse js/JSON (.-password res))]
+             (log/info "Encryption key" encryption-key)
              (if (= (.-length encryption-key) 0)
                (when reject
                  (log/warn "empty encryption key")
