@@ -27,7 +27,7 @@
                            (and @webview (:can-go-back? @result-box))
                            (do (.goBack @webview) true)
 
-                           (#{:home :wallet :my-profile} view-id)
+                           (#{:home :wallet :my-profile} @view-id)
                            (do (.exitApp react/back-handler))
 
                            (< 1 (count @stack))
